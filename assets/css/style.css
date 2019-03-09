@@ -1,0 +1,80 @@
+.gameClock{
+
+    margin-top: 30px;
+    margin-left: 670px;
+    border-style: solid;
+    border-color: orange;
+    background: whitesmoke; 
+    width: 20%; 
+    position: fixed;
+}
+
+.btn_Start{
+
+    margin-top: 62px;
+    margin-left: 670px;
+    border-style: solid;
+    border-color: orange;
+    background: whitesmoke; 
+    width: 20%; 
+    position: fixed;
+
+}
+
+.jumbotron{
+
+    margin-top: 200px;
+    margin-left: 100px;
+    width: 60%;
+    height: 300px;
+    position: fixed;
+
+} 
+
+.q_row{
+
+    margin-bottom: 50px;
+
+}
+.row{
+
+    margin-bottom: 5px;
+
+}
+
+.scoreBoard{
+
+    margin-top: 520px;  
+    margin-left: 100px;
+    border-style: solid;
+    border-color: limegreen;
+    background: whitesmoke; 
+    width: 10%;
+    position: fixed;
+
+}
+
+#corr_score{
+
+    
+}
+
+.controlBoard{
+
+    margin-top: 520px;  
+    margin-left: 730px;
+    border-style: solid;
+    border-color: steelblue;
+    background: lightblue;
+    width: 20%;
+    position: fixed;
+    position: relative;
+    float: right;   
+
+}
+
+    
+
+
+
+

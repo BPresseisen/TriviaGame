@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body background="assets/images/jeopardy blue.jpg">
+
+  <div class="container">
+    <h2 class="welcome"> WELCOME TO WHO IS-WHAT IS-WHEN IS-WHERE IS aka API JEOPARDY!</h2>
+    <p class ="parag">The table below shows a value which is a proxy for difficulty. The next column is the Jeopardy category. The clue appears in the 3rd column. 
+        <br> <br> Remember to type your answer in the form of a question in the last column. 
+        <br> Then, click the next button to check your answer and advance to the next clue. <br> <br> BUT BEWARE OF THE TIMER!!</p>
+    <table class="table">
+      <thead>
+        <tr></tr>
+
+          <!-- <th class = "col" scope="col">Value</th>
+          <th class = "col" scope="col">Category</th>
+          <th class = "col" scope="col">Clue</th>
+          <th class = "col" scope="col">Question</th> -->
+
+          <th scope="col">Value</th>
+          <th scope="col">Category</th>
+          <th scope="col">Clue</th>
+          <th scope="col">Question</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+
+    // var cat = ""
+    // var clue = ""
+    // var answer 
+    //var for clue/stimulus
+    //var for answer 
+
+    // var button = [{
+    //     btn1: "easy", 
+    //     value: "100",
+    // }, {
+
+    // }
+        
+    
+    // }]
+
+    // var queryURL = "http://jservice.io/api/random"
+    var queryURL = "http://jservice.io/api/clues"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        var tablerow = $("<tr>");
+        var value = $("<td>"+ response[0].value + "</td>");
+        console.log("value is " + value);
+        // var category = $("<td>" + response.category[].title + "</td>");
+        // console.log("category is " + category);
+        // var clue = $("<td>" + response.question + "</td>");
+        // console.log("clue is " + response.clue);
+        // var answer = response.answer;
+        // console.log("answer is " + answer);
+        tablerow.append(value, category, clue);
+        $("tbody").append(tablerow);
+
+            // var questions =[{
+            //     text: clue,
+            //     choices: ["Blue", answer, "baseball"],
+            //     answer: answer
+            // }]
+            
+
+
+    });
+    // $(document).ready(function(){
+
+        //$('#100val').click(function() {
+            //startGame()
+        // })
+
+    // });
+    // function startGame(){
+
+
+    // };
+
+    
+  </script>
+</body>
+
+</html>
