@@ -25,6 +25,8 @@ function start() {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
   }
+
+  twoMinuteDrill();
 };
 
 function skip() {
@@ -37,11 +39,14 @@ function restart() {
     $("#corr_score").html("0");
     $("#incorr_score").html("0");
     $("#blank_score").html("0");
+
     time = 120;
     $(".gameClock").html("<h3>" + "02:00"+ "</h3>");
     clearInterval(intervalId);
     intervalId = setInterval(count, 1000);
     clockRunning = true;
+
+    twoMinuteDrill();
 };
 
 
@@ -87,6 +92,8 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
 }
 
+function twoMinuteDrill(){
+
     var triviaObject = [{
         q: "Who is the mascot of the Philadelphia Flyers?",
         q_level: 100,
@@ -129,4 +136,4 @@ function timeConverter(t) {
       $(".ans_c_col").html(ans_C);
       ans_D=triviaObject[0].ans_D;
       $(".ans_d_col").html(ans_D);
-    // }
+  }
