@@ -23,22 +23,18 @@
 
 .jumbotron{
 
-    margin-top: 200px;
+    margin-top: 240px;
     margin-left: 100px;
     width: 60%;
-    height: 300px;
+    height: 100px;
     position: fixed;
+    visibility: hidden;
 
 } 
 
-.q_row{
+.qRow{
 
     margin-bottom: 50px;
-
-}
-.row{
-
-    margin-bottom: 5px;
 
 }
 
@@ -51,12 +47,7 @@
     background: whitesmoke; 
     width: 10%;
     position: fixed;
-
-}
-
-#corr_score{
-
-    
+    visibility: hidden;
 }
 
 .controlBoard{
@@ -70,6 +61,15 @@
     position: fixed;
     position: relative;
     float: right;   
+    visibility: hidden; 
+
+}
+
+.btnAns{
+
+    margin-left: 5px;
+    margin-right:5px;
+
 
 }
 

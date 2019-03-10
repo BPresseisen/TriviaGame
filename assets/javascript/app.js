@@ -9,65 +9,64 @@ window.onload = function() {
 };
 
 var intervalId;
-
 var clockRunning = false;
-// var time = 120;
-var time = 30;
-
+var time = 20;
 var q = "";
-var ans_A = "";
-var ans_B= "";
-var ans_C = "";
-var ans_D = "";
+var btnAns=["","","",""];
 var ans_Corr="";
+var ans_Played="";
 var qPlayed = false;
 var ansCounter = 0;
+var correct = 0;
+var incorrect = 0;
+var blank = 0;
+
+
+
 var triviaObject = [{
   q: "Who is the mascot of the Philadelphia Flyers?",
-  q_level: 100,
-  ans_A: "Big Shot", 
-  ans_B: "Slapshot",
-  ans_C: "Gritty",
-  ans_D: "Skatey",
-  ans_corr_value: "C",
-  ans_corr_text: "Gritty",
-  image: ""},
+  ans: ["Big Shot","Slapshot","Gritty","Skatey"],
+  corr:2,
+  image: "",
+  qPlayed: false},
   {q: "Who is currently the longest-tenured coach among the Four for 4 teams?",
-  q_level: 300,
-  ans_A: "Doug Pederson", 
-  ans_B: "Gabe Kapler",
-  ans_C: "Scott Gordon",
-  ans_D: "Brett Brown",
-  ans_corr: "D",
-  ans_corr_text: "Brett Brown, ",
-  image: ""},
+  ans:["Doug Pederson", "Gabe Kapler","Scott Gordon","Brett Brown"],
+  ans_corr: 3,
+  image: "",
+  qPlayed: false},
   {q: "Who is the radio broadcast announcer for the Philadelphia 76ers",
-  q_level: 500,
-  ans_A: "Tom Chambers", 
-  ans_B: "Tom Bodett",
-  ans_C: "Tom McGinnis",
-  ans_D: "Tom Thumb",
-  ans_corr: "C",
-  ans_corr_text: "Tom McGinnis, ",
-  image: ""},
+  ans: ["Tom Chambers", "Tom Bodett","Tom McGinnis","Tom Thumb"],
+  corr: 2,
+  image: "",
+  qPlayed: false},
 ];
+
+alert("Welcome to the LOVE Philly Sports 2-Minute Drill Trivia Game! Click the Start button to begin. " +
+"You have 20 seconds per question. " + 
+"There are 10 questions total. " + 
+"Click on the correct answer button. Good luck!")
 
 function start() {
 
-  // use setInterval to start the count here and set the clock to running.
+  $(".startStuff").css("visibility", "visible");
+  
   if (!clockRunning) {
-    // $(".gameClock").html("<h3>" + "02:00"+ "</h3>");
-    $(".gameClock").html("<h3>" + "00:30"+ "</h3>");
+    $(".gameClock").html("<h3>" + "00:20"+ "</h3>");
     clearInterval(intervalId);
-
-    // SetTimeOut...to pause the clock
-
 
     intervalId = setInterval(count, 1000);
     clockRunning = true;
   }
 
-  twoMinuteDrill();
+  $(".qRow").empty();
+
+  var qView=$("<div>")
+    qView
+    .append("Question: " + triviaObject[ansCounter].q + "<br")
+    $(".jumbotron").append(qView);
+  
+  renderButtons()
+
 };
 
 function skip() {
@@ -77,14 +76,14 @@ function skip() {
 
 
 function restart() {
-    $("#corr_score").html("0");
-    $("#incorr_score").html("0");
-    $("#blank_score").html("0");
+    $("#scoreCorr").html("0");
+    $("#scoreIncorr").html("0");
+    $("#scoreBlank").html("0");
 
     // time = 120;
-    time = 30;
+    time = 20;
     // $(".gameClock").html("<h3>" + "02:00"+ "</h3>");
-    $(".gameClock").html("<h3>" + "00:30"+ "</h3>");
+    $(".gameClock").html("<h3>" + "00:20"+ "</h3>");
     clearInterval(intervalId);
     intervalId = setInterval(count, 1000);
     clockRunning = true;
@@ -113,13 +112,11 @@ function count() {
 
 //  Alert the user that time is up.
     alert("Time Up! Game will start over.");
-  }else if(time===0 && ansCounter <9{
+  }else if(time===0 && ansCounter < triviaObject.length-1){
 
     //skip to next question
     ansCounter++;
     // restart();
-    
-
     
 
   }
@@ -146,19 +143,50 @@ function timeConverter(t) {
 
 function twoMinuteDrill(){
 
-   
+      console.log(ansCounter);
+      var ansVal = ($(this).attr("data-val"));
+      ansVal= parseInt(ansVal);
+      console.log(ansVal);
 
+      if(ansVal === triviaObject[ansCounter].corr){
 
-      q=triviaObject[ansCounter].q;
-      $(".question").html(q);
-      ans_A=triviaObject[ansCounter].ans_A;
-      $(".ans_a_col").html(ans_A);
-      ans_B=triviaObject[ansCounter].ans_B;
-      $(".ans_b_col").html(ans_B);
-      ans_C=triviaObject[ansCounter].ans_C;
-      $(".ans_c_col").html(ans_C);
-      ans_D=triviaObject[ansCounter].ans_D;
-      $(".ans_d_col").html(ans_D);
+        // SetTimeOut...to pause the clock
+        // grab triviaObject image and flash correct message
+        // correct++
 
-      var ans_Corr=triviaObject[ansCounter].a
-  }
+      }else {
+
+        // SetTimeOut...to pause the clock
+        // grab image flash incorrect message
+        // incorrec++
+      
+      };
+
+      // ansCounter++
+      // start() ... advance to next question ... render buttons
+
+}
+
+// Function for displaying answers
+function renderButtons() {
+
+// Deleting the answers choices prior to adding new ones
+// (this is necessary otherwise you will have repeat buttons)
+  $(".btnRow").empty();
+
+      // Looping through the array of answers
+      for (var i = 0; i < btnAns.length; i++) {
+
+        // Then dynamicaly generating buttons for each answer in triviaObject
+        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        var a = $("<button>");
+        // Adding a class of btnAns to our button
+        a.addClass("btnAns");
+        // Adding a data-attribute
+        a.attr("data-val", i);
+        // Providing the initial button text
+        a.text(triviaObject[ansCounter].ans[i]);
+        // Adding the button to the buttons-view div
+        $(".btnRow").prepend(a);
+      }
+    }
