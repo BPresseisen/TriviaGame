@@ -96,7 +96,6 @@ function start() {
     $(".scoreBlank").html("0");
 
   }else if (($(this).text()!=="SKIP")){
-
     
     $(".jumbotron").empty();
 
@@ -137,6 +136,9 @@ function skip() {
   }else if(ansCounter < triviaObject.length){
 
     // maybe try to replace the alert with an custom-image
+    clearInterval(intervalId);
+    time=20;
+    clockRunning = false;
     start();
   };
 };  
@@ -157,6 +159,10 @@ function restart() {
     // clearInterval(intervalId);
     // intervalId = setInterval(count, 1000);
     // clockRunning = true;
+
+    clearInterval(intervalId);
+    time=20;
+    clockRunning = false;
 
     $(".jumbortron").empty();
     start();
