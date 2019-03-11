@@ -2,7 +2,6 @@ var intervalId;
 var clockRunning = false;
 var time = 20;
 var q = "";
-var qPlayed = false;
 var ansCounter = 0;
 var correct = 0;
 var incorrect = 0;
@@ -77,25 +76,17 @@ function start() {
 
   $(".startStuff").css("visibility", "visible");
   
-  // if (!clockRunning) {
-  //   $(".gameClock").html("<h3>" + "00:20"+ "</h3>");
-  //   clearInterval(intervalId);
+  if (!clockRunning) {
+    $(".gameClock").html("<h3>" + "00:20"+ "</h3>");
+    clearInterval(intervalId);
 
-  //   intervalId = setInterval(count, 1000);
-  //   clockRunning = true;
-  // }
+    intervalId = setInterval(count, 1000);
+    clockRunning = true;
+  }
 
-  // $(".qRow").empty();
-
-  console.log("the ansCounter is: " + ansCounter);
-  console.log("the button pressed is: " + ($(this).text()));
 
   if(ansCounter>9){
 
-    console.log("the ansCounter is:" + ansCounter);
-    console.log("the correct score is: " &  correct);
-    console.log("the incorrect score is: " &  incorrect);
-    console.log("the blank score is: " &  blank);
     ansCounter = 0;
     correct = 0;
     incorrect = 0;
@@ -114,13 +105,8 @@ function start() {
   var qView=$("<div>")
     qView
     .append("Question: " + triviaObject[ansCounter].q + "<br")
-    // console.log("Question: " + triviaObject[ansCounter].q );
-    // if(ansCounter===0){
+    
       $(".jumbotron").append(qView);
-    // }else{
-      // $(".qRow").empty();
-      // $(".qRow").append(qView);
-    // };
       
   renderButtons()
 
@@ -196,6 +182,9 @@ function count() {
     $(".jumbotron").empty();
     //  custom-image/message letting user know BOTH time is up AND game-over
     alert("Thank you for playing the LOVE Philly Sports 2-Minute Drill Trivia Game! Your final score appears at bottom.")
+    clearInterval(intervalId);
+    time=20;
+    clockRunning = false;
     restart();
 
 //  Alert the user that time is up.
@@ -206,6 +195,9 @@ function count() {
     // maybe try to replace the alert with an custom-image
     alert("Time is Up! On to the next question!");
     ansCounter++;
+    clearInterval(intervalId);
+    time=20;
+    clockRunning = false;
     start();
   };
 };
@@ -259,6 +251,10 @@ function twoMinuteDrill(){
 
       ansCounter++
 
+      clearInterval(intervalId);
+      time=20;
+      clockRunning = false;
+
       if (ansCounter <= triviaObject.length-1){
           start()
       
@@ -278,24 +274,18 @@ function renderButtons() {
 
 // Deleting the answers choices prior to adding new ones
 // (this is necessary otherwise you will have repeat buttons)
-  // console.log("the ansCounter is: " + ansCounter);
   if(ansCounter !==0){
     
     $(".btnRow").empty();
 
   };
 
-  // Looping through the array of answers
-
-  // console.log("length is: " + triviaObject[ansCounter].ans.length);
-
-  // console.log("the triviaObject length is: " + triviaObject[ansCounter].ans.length );
   for (var i = 0; i < triviaObject[ansCounter].ans.length; i++) {
   
     // Then dynamicaly generating buttons for each answer in triviaObject
     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
     var a = $("<button>");
-    // Adding a class of btnAns to our button
+    // Adding a class of btnAns to our buttons
     a.addClass("btnAns");
     // Adding a data-attribute
     // console.log("the value of this button is: " + i);
@@ -304,9 +294,6 @@ function renderButtons() {
     // console.log("the button being made is: " + triviaObject[ansCounter].ans[i]);
     a.text(triviaObject[ansCounter].ans[i]);
     // Adding the button to the buttons-view div
-    // $(".btnRow").prepend(a);
-    // $(".btnRow").append(a);
     $(".jumbotron").append(a);
-    // $(".jumbotron").prepend(a);
   };
 };
