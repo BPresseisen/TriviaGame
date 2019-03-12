@@ -11,52 +11,52 @@ var triviaObject = [{
   q: "Who became the mascot of the Philadelphia Flyers in the 2018-2019 season?",
   ans: ["Big Shot","Slapshot","Gritty","Skatey"],
   corr:2,
-  image: "",
+  image: "assets/images/Gritty.jpg",
   qPlayed: false},
   {q: "In the 2018-2019 season, who is currently the longest-tenured coach among the four major Philadelphia teams?",
   ans:["Doug Pederson", "Gabe Kapler","Scott Gordon","Brett Brown"],
   corr: 3,
-  image: "",
+  image: "assets/images/bb.jpg",
   qPlayed: false},
   {q: "Who is the radio broadcast announcer for the Philadelphia 76ers?",
   ans: ["Tom Chambers", "Tom Bodett","Tom McGinnis","Tom McCann"],
   corr: 2,
-  image: "",
+  image: "assets/images/TomMcGinnis.jpg",
   qPlayed: false},
   {q: "Who is the sensational rookie goaltender for the Philadelphia Flyers in the 2018-2019 season?",
   ans: ["Carter Hart", "Gary Hart","Bret Neidhart","Jim Neidhart"],
   corr: 0,
-  image: "",
+  image: "assets/images/CarterHart.jpg",
   qPlayed: false},
   {q: "Which popular ballpark item is purchased for just $1 on promotional nights at Philadelphia Phillies games?",
   ans: ["Hot Peanuts", "Hot Popcorn", "Hot Pretzel", "Hot Dog"],
   corr: 3,
-  image: "",
+  image: "assets/images/hot_dog.jpg",
   qPlayed: false},{
   q: "Which 76ers legend had his #2 retired by the team in the 2018-2019 season?",
   ans: ["Moses Malone","Jeff Ruland","Maurice Cheeks","Christian Welp"],
   corr: 0,
-  image: "",
+  image: "assets/images/Moses2.jpg",
   qPlayed: false},
   {q: "In the 2018-2019 season, which player for the Philadelphia Eagles lead the team in receptions?",
   ans:["Alshon Jeffrey","Nelson Agholor","Darren Sproles","Zach Ertz"],
   corr: 3,
-  image: "",
+  image: "assets/images/ZachErtz.jpg",
   qPlayed: false},
   {q: "When the Philadelphia Phillies begin the 2019 season, who will be their opening day pitcher?",
   ans: ["Christopher Nolan", "Nolan Ryan","Aaron Copland","Aaron Nola"],
   corr: 3,
-  image: "",
+  image: "assets/images/AaronNola.jpeg",
   qPlayed: false},
   {q: "When the Philadelphia Phillies begin the 2019 season, which last names of players will appear on the uniforms for their opening day Right Fielder and First Baseman?",
   ans: ["Harper and Hopkins","Hopkins and Harper", "Herrera and Hopkins","Harper and Herrera"],
   corr: 0,
-  image: "",
+  image: "assets/images/HarperHoskins.jpg",
   qPlayed: false},
   {q: "On the Philadelphia 76ers, which player said the following about himself: 'I don't get disrespected; I do the disrespecting.'",
   ans: ["Ben Simmons", "Tobias Harris","Jimmy Butler","Joel Embiid"],
   corr: 3,
-  image: "",
+  image: "assets/images/JoJo.png",
   qPlayed: false},
 ];
 
@@ -65,6 +65,9 @@ window.onload = function() {
   $("#btnSkip").on("click", skip);
   $("#btnRestart").on("click", restart);    
   $(document).on("click",".btnAns", twoMinuteDrill);
+
+  var image = "assets/images/WentzWin.jpg"
+  $(".ans_image").html('<img src="' + image + '">');
 };
 
 alert("Welcome to the LOVE Philly Sports 2-Minute Drill Trivia Game! Click the Start button to begin. " +
@@ -113,16 +116,9 @@ function start() {
 
 function skip() {
 
-  console.log("the button pressed is: " + ($(this).text()));
   blank ++
-  console.log("the blank counter is: " + blank);
   $(".scoreBlank").html(blank);
-  console.log("the ansCounter is: " + ansCounter)
-  ansCounter ++
-  console.log("the ansCounter is: " + ansCounter)
-
-  console.log("the ansCounter is: " + ansCounter);
-
+  ansCounter ++;
   $(".scoreBlank").html(blank);
 
   if (ansCounter === triviaObject.length) {
@@ -145,7 +141,6 @@ function skip() {
 
 function restart() {
 
-    console.log("the button pressed is: " + ($(this).text()));
     ansCounter = 0;
     correct = 0;
     incorrect = 0;
@@ -153,12 +148,6 @@ function restart() {
     $(".scoreCorr").html("0");
     $(".scoreIncorr").html("0");
     $(".scoreBlank").html("0");
-
-    // time = 20;
-    // $(".gameClock").html("<h3>" + "00:20"+ "</h3>");
-    // clearInterval(intervalId);
-    // intervalId = setInterval(count, 1000);
-    // clockRunning = true;
 
     clearInterval(intervalId);
     time=20;
@@ -175,7 +164,6 @@ function count() {
   
 // get the current time, pass that into the timeConverter function, and save the result in a variable.
   var converted = timeConverter(time);
-  // console.log(converted);
   
 // use the variable we just created to show the converted time on the gameClock
   $(".gameClock").html("<h3>" + converted + "</h3>");
@@ -186,7 +174,6 @@ function count() {
     blank++
     $(".scoreBlank").html(blank);
     $(".jumbotron").empty();
-    //  custom-image/message letting user know BOTH time is up AND game-over
     alert("Thank you for playing the LOVE Philly Sports 2-Minute Drill Trivia Game! Your final score appears at bottom.")
     clearInterval(intervalId);
     time=20;
@@ -229,27 +216,27 @@ function timeConverter(t) {
 
 function twoMinuteDrill(){
 
-      // console.log("the answer counter is: " + ansCounter);
       var ansVal = ($(this).attr("data-val"));
-      // console.log("the correct answer for this question is: " + ansVal);
       ansVal= parseInt(ansVal);
-      // console.log("the parsed correct answer value is: " + ansVal);
-      
-      // console.log("the correct value for this in the triviaObject is: " + triviaObject[ansCounter].corr); 
 
       var corr=triviaObject[ansCounter].corr;
 
       if(ansVal === corr){
 
-        // SetTimeOut...to pause the clock
-        // grab triviaObject image and flash correct message
+        var image = triviaObject[ansCounter].image
+        console.log(image);
+        $(".ans_image").html('<img src="' + image + '">');
+        // var image_element= $("<img>").attr("src",image);
+        // $(".ans_image").append(image_element);
         correct++
         $(".scoreCorr").html(correct);
 
       }else {
 
-        // SetTimeOut...to pause the clock
-        // grab image flash incorrect message
+        var corr= triviaObject[ansCounter].corr
+
+        alert("INCORRECT! The answer is: " + triviaObject[ansCounter].ans[corr]);
+
         incorrect++
         $(".scoreIncorr").html(incorrect);
       
@@ -262,15 +249,14 @@ function twoMinuteDrill(){
       clockRunning = false;
 
       if (ansCounter <= triviaObject.length-1){
-          start()
+        
+        start()
       
       //last question
       }else {
 
-        $(".jumbotron").empty();
-        //  insert game-over image
         alert("Thank you for playing the LOVE Philly Sports 2-Minute Drill Trivia Game! Your final score appears at the bottom.")
-      
+
       };
       
 };
