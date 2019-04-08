@@ -4,6 +4,9 @@ How well does the user know some recent Philadelphia sports trivia? To find out,
 
 Answers are shown on buttons which the the user clicks to choose for a particular question. 
 
-The questions and answer choices reset with each previously correct, incorrect, or expired (run on out time on the 00:00:20 seconds) interval.
+The questions and answer choices reset with each previously correct, incorrect, or expired (run out of time on the 00:00:20 seconds) interval.
+
+As the user proceeds, there is a gameBoard which tracks scores for correct, incorrect, and skipped. There are additional buttons to skip questions and reset the game as desired.
+
 
 
