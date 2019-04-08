@@ -14,7 +14,7 @@ Future development plans include the following mods:
 
 Here is the deployed link:
 
-
+https://bpresseisen.github.io/TriviaGame/
 
 ABOUT THE DESIGN:
 
