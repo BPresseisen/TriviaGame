@@ -10,7 +10,7 @@ As the user proceeds, there is a gameBoard which tracks scores for correct, inco
 
 Future development plans include the following mods:
 
-(1) greater mobile responsiveness (2) refactorization of the called functions. At this point the called function is on each image's onClick even, thus not fullying utilizing the 'this' alias and assignment of a value from an stored attribute/data-value on the image and lastly at the game's conclusion; (3) there would be two resulting images drawn to the screen depending on the outcome: win or lose. These images have been identified and will be added this week (2019_April07) in time for this submission. If not, shortly thereafer.
+(1) enhanced mobile responsiveness (2) removing alerts and replacing with modals and lastly at the game's conclusion; (3) adding additional elements to the object so as to offer more questions and randomizing their usage per game play.
 
 Here is the deployed link:
 
@@ -18,5 +18,12 @@ https://bpresseisen.github.io/TriviaGame/
 
 ABOUT THE DESIGN:
 
-variables, called functions and onClick events all contribute to the deployment.
+objects, called functions, timers, and onClick events all contribute to the deployment. the divs, images, and buttons on the page are drawn per the looping (one question to the next) in the object. the looping is currently sequential but with the additions of new quesitons, the plan is to randomize--without repeating--quesitons shown per each instance of the game. The object holds key:value pairs for questions, answer choices, correct answers and images to draw on the page based on the response. 
 
+There are called functions for the different parts of the game: gameStart, rendering buttons, resetting the timer, running the timer, converting time, skipping, and the gameEnd.
+
+The operation of the timer depends on two (2) custom functions, two (2) reserved functions, setInterval (which converts the time from milliseconds to the time in the hh:mm:ss format desired) and clearInterval (which clears the aformentioned), and several variables, most notably a clockRunning checker which monitors when/id the timer is runnning or paused.
+
+a count function kicks off the countdown based on the initialization of a time variable and the drawing to the screen of the interval value and;
+
+a timeConverter function which converts the milliseconds to the standard time measurements (including hh:mm:ss) and then sets the variables for minutes and seconds.
