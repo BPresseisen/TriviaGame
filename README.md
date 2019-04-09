@@ -18,7 +18,7 @@ https://bpresseisen.github.io/TriviaGame/
 
 ABOUT THE DESIGN:
 
-objects, called functions, timers, and onClick events all contribute to the deployment. the divs, images, and buttons on the page are drawn per the looping (one question to the next) in the object. the looping is currently sequential but with the additions of new quesitons, the plan is to randomize--without repeating--quesitons shown per each instance of the game. The object holds key:value pairs for questions, answer choices, correct answers and images to draw on the page based on the response. 
+objects, called functions, timers, and onClick events all contribute to the deployment. the divs, images, and buttons on the page are drawn per the looping (one question to the next) in the object. the looping is currently sequential but with the additions of new quesitons, the plan is to randomize--without repeating--questions shown per each instance of the game. The object holds key:value pairs for questions, answer choices, correct answers and images to draw on the page based on the response. 
 
 There are called functions for the different parts of the game: gameStart, rendering buttons, resetting the timer, running the timer, converting time, skipping, and the gameEnd. the use of the 'this' alias appears throughout the coding so as to factor and optimize the routines, operations, and subroutines.
 
