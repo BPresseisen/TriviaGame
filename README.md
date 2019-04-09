@@ -20,7 +20,7 @@ ABOUT THE DESIGN:
 
 objects, called functions, timers, and onClick events all contribute to the deployment. the divs, images, and buttons on the page are drawn per the looping (one question to the next) in the object. the looping is currently sequential but with the additions of new quesitons, the plan is to randomize--without repeating--questions shown per each instance of the game. The object holds key:value pairs for questions, answer choices, correct answers and images to draw on the page based on the response. 
 
-There are called functions for the different parts of the game: gameStart, rendering buttons, resetting the timer, running the timer, converting time, skipping, and the gameEnd. the use of the 'this' alias appears throughout the coding so as to factor and optimize the routines, operations, and subroutines.
+There are called functions for the different parts of the game: gameStart, rendering buttons, resetting the timer, running the timer, converting time, skipping, and the gameEnd. the use of the 'this' alias appears throughout the coding to demonstrate the scalabitlity of scope and to factor and optimize routines, operations, and subroutines.
 
 The operation of the timer depends on two (2) custom functions, two (2) reserved functions, setInterval (which converts the time from milliseconds to the time in the hh:mm:ss format desired) and clearInterval (which clears the aformentioned), and several variables, most notably a clockRunning checker which monitors when/id the timer is runnning or paused.
 
